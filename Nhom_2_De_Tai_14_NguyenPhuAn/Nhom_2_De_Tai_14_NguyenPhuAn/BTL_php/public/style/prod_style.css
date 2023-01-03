@@ -1,0 +1,26 @@
+h1 {
+    color: white;
+    height: 80px;
+    background-color: #00bbb3;
+    line-height: 80px;
+    text-align: center;
+}
+p.footer {
+    color: yellow;
+    height: 30px;
+    background-color: blue;
+    line-height: 30px;
+    text-align: center;
+}
+.product {
+    border: 1px solid gray;
+    text-align: center;
+}
+div.container-fluid {
+    background-color: #fff;
+    color: red;
+}
+.productdetail {
+    min-height: 600px;
+    text-align: center;
+}

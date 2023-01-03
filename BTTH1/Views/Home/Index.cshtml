@@ -1,0 +1,65 @@
+﻿@using BTTH1.Models
+@model BTTH1.Models.Tinh
+@{
+    ViewBag.Title = "Các Phép Tính";
+}
+<h2>@ViewBag.Title</h2>
+@using (Html.BeginForm())
+{
+    <div class="form-group">
+        @Html.Label("Số thứ 1: ")
+        @Html.TextBoxFor(m => m.So1, new { @class = "form-control" })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.So1)</span>
+    </div>
+    <div class="form-group">
+        @Html.Label("Số thứ 2: ")
+        @Html.TextBoxFor(m => m.So2, new { @class = "form-control" })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.So2)</span>
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="+" name="command" />
+        <input type="submit" class="btn btn-primary" value="-" name="command" />
+        <input type="submit" class="btn btn-primary" value="x" name="command" />
+        <input type="submit" class="btn btn-primary" value="/" name="command" />
+    </div>
+    <div class="form-group">
+        @Html.Label("Kết Quả:")
+        @if (Model.Errorr != "")
+        {<span>@Model.Errorr</span>}
+    else
+    { <span>@String.Format("{0:0.##}", Model.KetQua)</span>}
+    </div>
+}
+@using (Html.BeginForm("Calculate", "Home", FormMethod.Post, new { @class = "form-inline" }))
+{
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.So1, new { @class = "form-control" })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.So1)</span>
+    </div>
+    <div class="form-group">
+        @Html.DropDownListFor(m => m.Phep, new[]
+           {
+               new SelectListItem{Text= "+", Value= "+" },
+               new SelectListItem{Text= "-", Value= "-" },
+               new SelectListItem{Text= "x", Value= "x" },
+               new SelectListItem{Text= "/", Value= "/" }
+           }, new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.So2, new { @class = "form-control" })
+        <span class="text-danger">@Html.ValidationMessageFor(m => m.So2)</span>
+    </div>
+    <span>=</span>
+    <div class="form-group">
+        @Html.TextBoxFor(m => m.KetQua, null, new { @class = "form-control", @readonly = "readonly" })
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">Tính</button>
+    </div>
+    <div class="form-group">
+        <p>
+            @if (Model.Errorr != "")
+            {<sapn>@Model.Errorr</sapn>}
+        </p>
+    </div>
+}
